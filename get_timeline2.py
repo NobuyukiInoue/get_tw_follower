@@ -2,7 +2,7 @@
 
 from requests_oauthlib import OAuth1Session
 import json
-import my_key
+from mylibs import my_key
 
 # タイムライン取得用のURL
 url = "https://api.twitter.com/1.1/statuses/home_timeline.json"

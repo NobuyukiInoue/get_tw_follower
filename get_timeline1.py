@@ -5,10 +5,10 @@ python-twitterを利用して、pythonでTwitterを操作する。
 https://qiita.com/ti-ginkgo/items/90914db1dc7e229c69c7
 '''
 
-import my_key
 import twitter
 from pandas import DataFrame
 from datetime import datetime
+from mylibs import my_key
 
 
 def auth():
