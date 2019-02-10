@@ -36,15 +36,16 @@ def getIds(Api, Id):
 def getFlds(Api, id_list):
     """ユーザー情報をlookupし、主要プロパティを取得する"""
 
-    users = Api.lookup_users(user_ids=id_list)
-
     follower_list = []
-    apend = follower_list.append
 
     # ヘッダ行の出力
-    apend(["id", "screen_name", "location", "description", "followers_count", "following"])
+    follower_list.append(["id", "screen_name", "location", "description", "followers_count", "following"])
 
-    for user in users:
-        apend([user.id, user.screen_name, user.location, user.description, user.followers_count, user.following])
+    # 100件ずつ読み込む
+    for i in range(0, len(id_list), 100):
+        users = Api.lookup_users(user_ids=id_list[i:i + 100])
+
+        for user in users:
+            follower_list.append([user.id, user.screen_name, user.location,   user.description.replace("\n", ""), user.followers_count, user.following])
 
     return follower_list
