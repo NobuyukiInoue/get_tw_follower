@@ -20,7 +20,7 @@ def getDateStr(targetStr):
 
 def readCSVfile(fileName):
     """twitter_follower_yyyymmdd_hhMMss.csv を開く"""
-    lines = pandas.read_csv(fileName, encoding="sjis")
+    lines = pandas.read_csv(fileName, encoding="utf8")
     return lines
 
 
