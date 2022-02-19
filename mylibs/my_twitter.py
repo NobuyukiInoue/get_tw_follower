@@ -23,7 +23,7 @@ def getIds(Api, Id):
     """Idで指定されたユーザの全フォロワーを取得する"""
 
     # Cursorを使ってフォロワーのidを逐次的に取得
-    followers_ids = tweepy.Cursor(Api.followers_ids, id = Id, cursor = -1).items()
+    followers_ids = tweepy.Cursor(Api.get_follower_ids, id = Id, cursor = -1).items()
 
     try:
         followers_ids_list = [id for id in followers_ids]
@@ -43,7 +43,7 @@ def getFlds(Api, id_list):
 
     # 100件ずつ読み込む
     for i in range(0, len(id_list), 100):
-        users = Api.lookup_users(user_ids=id_list[i:i + 100])
+        users = Api.lookup_users(user_id=id_list[i:i + 100])
 
         for user in users:
             follower_list.append([user.id, user.screen_name, user.location,   user.description.replace("\n", ""), user.followers_count, user.following])
